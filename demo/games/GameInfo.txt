@@ -1,0 +1,10 @@
+IFID: 12345
+Name: textMenu Library Demo Game
+Byline: Diegesis & Mimesis
+Desc: Demo game for the textMenu library. 
+Version: 1.0
+ReleaseDate: 2022-08-24
+Language: en-US
+LicenseType: Freeware
+CopyingRules: Nominal cost only; compilations allowed
+PresentationProfile: Default
