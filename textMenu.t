@@ -25,11 +25,17 @@ class TextMenu: object
 	// The input prompt, displayed at the bottom of the menu text
 	menuPrompt = '\b&gt;'
 
-	// The accepted input strings.  This needs to be a List whose
-	// elements are the valid inputs.  E.g., something like
-	// [ 'start', 'restore', 'quit' ] or whatever.
-	// The return value from showMenu() will be one of these strings
-	// or nil on error.
+	// The accepted input strings.  This needs to be a LookupTable whose
+	// keys are the valid inputs and whose values are functions or
+	// methods to be called when the player enters that string.
+	// E.g., something like
+	//
+	// menuOptions = static [
+	//	'start'	-> &startMethod,
+	//	'quit'	-> &quitMethod
+	// ]
+	//
+	// The method should be defined on the TextMenu instance.
 	menuOptions = nil
 
 	// Boolean flag.  If set, the screen is cleared via cls() before

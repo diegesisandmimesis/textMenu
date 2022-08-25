@@ -63,12 +63,12 @@ mainMenu:	TextMenu
 	// We can also use an inline function, as illustrated in the
 	// third property ('bar') below.
 	menuOptions = static [
-		'about' -> &aboutMethod,
-		'foo' -> &fooMethod,
-		'bar' -> function() {
+		'about'	-> &aboutMethod,
+		'foo'	-> &fooMethod,
+		'bar'	-> function() {
 			enterToContinue('Bar.\n ', true); showMenu();
 		},
-		'quit' -> &quitMethod
+		'quit'	-> &quitMethod
 	]
 
 	// In our first example method we call someone else to display
@@ -89,12 +89,14 @@ mainMenu:	TextMenu
 		enterToContinue(nil, true);
 		showMenu();
 	}
+
 	// In this case we're using enterToContinue() to display some
 	// text (instead of calling an external method, as above).
 	fooMethod() {
 		enterToContinue('This is some "foo" text.\n ', true);
 		showMenu();
 	}
+
 	// In this case we don't call showMenu() again, which means
 	// we'll be exiting the menu.  Since in this example we're
 	// called from gameMain.newGame(), we'll end up falling off
