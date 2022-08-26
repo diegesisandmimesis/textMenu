@@ -66,7 +66,7 @@ mainMenu:	TextMenu
 		'about'	-> &aboutMethod,
 		'foo'	-> &fooMethod,
 		'bar'	-> function() {
-			enterToContinue('Bar.\n ', true); showMenu();
+			enterToContinue('Bar.\n ', true); returnToMenu();
 		},
 		'quit'	-> &quitMethod
 	]
@@ -79,25 +79,25 @@ mainMenu:	TextMenu
 	// optionally displaying some text and/or a prompt first.  See
 	// the next example for an alternate usage.
 	// After pausing via enterToContinue() we display the menu again
-	// by calling showMenu().
-	// If we DON'T call showMenu() again, we'll end up returning
+	// by calling returnToMenu().
+	// If we DON'T call returnToMenu() again, we'll end up returning
 	// control to our caller (whatever place in the code decided to
 	// show this menu in the first place), effectively exiting the
 	// menu.
 	aboutMethod() {
 		versionInfo.showAbout();
 		enterToContinue(nil, true);
-		showMenu();
+		returnToMenu();
 	}
 
 	// In this case we're using enterToContinue() to display some
 	// text (instead of calling an external method, as above).
 	fooMethod() {
 		enterToContinue('This is some "foo" text.\n ', true);
-		showMenu();
+		returnToMenu();
 	}
 
-	// In this case we don't call showMenu() again, which means
+	// In this case we don't call returnToMenu() again, which means
 	// we'll be exiting the menu.  Since in this example we're
 	// called from gameMain.newGame(), we'll end up falling off
 	// the end, which will end the game.  Which is fine, because

@@ -48,6 +48,10 @@ class TextMenu: object
 	// where you just have to hit return to start the game normally)
 	allowBlank = nil
 
+	// Flag set by returnToMenu()
+	// Tells the main showMenu() loop to run through the loop again.
+	_menuFlag = nil
+
 	// Helper method that clears the screen and displays the menu text.
 	_showMenu() {
 		if(menuClear == true)
@@ -60,18 +64,32 @@ class TextMenu: object
 	showMenu() {
 		local cmd, r;
 
-		_showMenu();
-
 		for(;;) {
+			// Show the menu text and prompt
+			_showMenu();
 			"<<menuPrompt>>";
+
+			// Get a line of input from the player
 			cmd = inputManager.getInputLine(nil, nil);
 
+			// Figure out if the player input matched a keyword,
+			// and if so if we're done or if we need to display
+			// the menu again.
 			r = parseInput(cmd);
-			if(r != nil)
+			if((r != nil) && !_menuFlag)
 				return(r);
 
-			_showMenu();
+			// Reset the return-to-menu flag
+			_menuFlag = nil;
 		}
+	}
+
+	// Called by keyword handlers if they want to return to the menu
+	// after they're done doing whatever they're going to do.
+	// If this ISN'T called by a handler, then control will return
+	// to the caller (whoever invoked showMenu()), exiting the menu.
+	returnToMenu() {
+		_menuFlag = true;
 	}
 
 	// Parse the player input.
